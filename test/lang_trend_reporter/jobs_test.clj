@@ -17,6 +17,13 @@
 
 (def job-after {:title       "software engineer (robotics/mechatronics)"
                 :description "this is a job that requires python experience."})
+
+(def job-before-vec [job-before job-before job-before])
+
+(def job-after-vec [job-after job-after job-after])
+
 (deftest a-test
-  (testing ""
-    (is (= (jobs/get-desc-and-title job-before) job-after))))
+  (testing "Converting a 'job' map should create a new map with only the
+           'description' and 'title' fields and all text downcased"
+    (is (= (jobs/get-desc-and-title job-before) job-after))
+    (is (= (jobs/transform-jobs-vec job-before-vec) job-after-vec))))
