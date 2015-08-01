@@ -1,6 +1,6 @@
 (ns lang-trend-reporter.jobs-test
   (:require [clojure.test :refer :all]
-            [lang-trend-reporter.jobs-http :as jobs]))
+            [lang-trend-reporter.jobs :as jobs]))
 
 (def job-before
   {:id            "47bfd166-36f8-11e5-8403-91cec3b60979"

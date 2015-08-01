@@ -1,4 +1,4 @@
-(ns lang-trend-reporter.jobs-http
+(ns lang-trend-reporter.jobs
   (:require [clj-http.client :as client]
             [clojure.string  :as string]))
 
