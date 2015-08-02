@@ -13,23 +13,30 @@
    "lisp"   "visual basic" "matlab"])
 
 (defn get-desc-and-title
-  "takes a job map and returns a new map of only the
-  description and title since they are the only fields
-  needed. all text is downcased"
+  "Takes a job map and returns a new map of only the
+   description and title since they are the only fields
+   needed. All text is downcased. What is really important
+   is the downcasing (for reliable string comparison)."
   [{desc :description title :title}]
   {:title       (string/lower-case title)
    :description (string/lower-case desc)})
 
 (defn get-jobs-by-city
-  "returns a vector of available jobs by city"
+  "Returns a vector of available jobs by city."
   [city]
   (let [jobs-json (client/get (str base-url city) {:as :json})]
     (vec (:body jobs-json))))
 
 (defn transform-jobs-vec
-  "converts each item in jobs vec to new map with
-  only 'description' and 'title' fields with all text downcased"
+  "Converts each item in jobs vec to new map with
+   only 'description' and 'title' fields with all text downcased."
   [jarbs]
   (vec (map #(get-desc-and-title %) jarbs)))
+
+(defn is-lang-in-job?
+  "Checks if a language is referenced in a job's
+   description or title."
+  [lang {desc :description title :title}]
+  (or (.contains desc lang) (.contains title lang)))
 
 

@@ -22,8 +22,17 @@
 
 (def job-after-vec [job-after job-after job-after])
 
-(deftest a-test
+(deftest job-conversion-test
   (testing "Converting a 'job' map should create a new map with only the
-           'description' and 'title' fields and all text downcased"
+           'description' and 'title' fields and all text downcased."
     (is (= (jobs/get-desc-and-title job-before) job-after))
     (is (= (jobs/transform-jobs-vec job-before-vec) job-after-vec))))
+
+(deftest job-contains-lang-test
+  (testing ""
+    (is (jobs/is-lang-in-job? "python" {:description "machine learning with scipy!"
+                                        :title "python job"}))
+    (is (jobs/is-lang-in-job? "python" {:description "python hacking :)"
+                                        :title "software developer"})))
+    (is (not (jobs/is-lang-in-job? "python" {:description "java hacking :)"
+                                             :title "software developer"}))))
