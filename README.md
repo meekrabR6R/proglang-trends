@@ -9,6 +9,8 @@ Once you have Leiningen set up, you can fun ```lein run``` from the root of the 
 
 To run tests, execute ```lein test``` from root of repository.
 
+The meat of the project is in ```./src/lang_trend_reporter/jobs.clj``` and the code that executes the program is in ```src/lang_trend_reporter/core.clj```.
+
 (Caveat: I noticed while working on this, that calls to the api for job listings will occasionally return a 0 length array of results, when there should be results. It seems to happen randomly. The same call will return results once, and then none the next time, etc. I observed this both by making a GET request directly in the browser, as well as in the app itself.)
 
 ## Answers to Post-Project Questions
